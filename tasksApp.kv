@@ -18,30 +18,71 @@
                 size_hint: None, None
                 size: self.texture_size
                 pos_hint: {"center_x": 0.5, "center_y": 0.8}
-                color: 0.18, 0.28, 0.35, 1
+                color: 0.184, 0.282, 0.345, 1
 
-            MDButton:
-                style: "tonal"
-                adaptive_size: True
-                pos_hint: {"center_x":0.5, "center_y":0.6}
-                on_press: app.root.current = 'tasks'
+            Button:
                 text: "Add Task"
                 font_size: "20sp"
+                font_name: "CustomFont"
+                size_hint: None, None
+                size: self.texture_size
+                padding: [30, 15]
+                pos_hint: {"center_x": 0.5, "center_y": 0.6}
+                background_normal: ""  # No default background image
+                background_color: 0, 0, 0, 0  # Transparent background
+                color: 0.184, 0.282, 0.345, 1  # Text color
+                on_press: app.root.current = 'tasks'
+                canvas.before:
+                    Color:
+                        rgba: 0.811, 0.988, 1, 1  # Set the button color
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [20]
 
-            MDButton:
-                style: "tonal"
-                adaptive_size: True
-                pos_hint: {"center_x":0.5, "center_y":0.53}
-                on_press: app.go_calendar()
+            Button:
                 text: "Monthly View"
                 font_size: "20sp"
+                font_name: "CustomFont"
+                size_hint: None, None
+                size: self.texture_size
+                padding: [30, 15]
+                pos_hint: {"center_x": 0.5, "center_y": 0.48}
+                background_normal: ""
+                background_color: 0, 0, 0, 0  # Transparent background
+                color: 0.184, 0.282, 0.345, 1
+                on_press: app.go_calendar()
+                canvas.before:
+                    Color:
+                        rgba: 0.811, 0.988, 1, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [20]
 
-            MDButton:
-                style: "tonal"
-                adaptive_size: True
-                pos_hint: {"center_x":0.5, "center_y":0.46}
+            Button:
                 text: "Save Tasks"
                 font_size: "20sp"
+                font_name: "CustomFont"
+                size_hint: None, None
+                size: self.texture_size
+                padding: [30, 15]
+                pos_hint: {"center_x": 0.5, "center_y": 0.36}
+                background_normal: ""
+                background_color: 0, 0, 0, 0  # Transparent background
+                color: 0.184, 0.282, 0.345, 1
+                #on_press: app.save_task()
+                canvas.before:
+                    Color:
+                        rgba: 0.811, 0.988, 1, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [20]
+
+
+
+
 
 
 <AddTasksScreen>:
@@ -70,91 +111,99 @@
                 font_size: "24sp"
                 size_hint: None, None
                 size: self.texture_size
-                pos_hint: {"center_x": 0.5, "center_y": 0.93}
+                pos_hint: {"center_x": 0.5, "center_y": 0.96}
                 color: 0, 0, 0, 1
 
             Label:
                 text: "Task Name:"
                 font_name: "CustomFont"
-                font_size: "18sp"
-                size_hint: None, None
-                size: self.texture_size
-                pos_hint: {"center_x":0.5, "center_y":0.8}
+                font_size: "20sp"
+                adaptive_size: True
+                pos_hint: {"center_x": 0.5, "center_y": 0.8}
+                padding: "4dp", "4dp"
 
             MDTextField:
                 id: task_name
+                font_name: "CustomFont"
                 adaptive_size: True
-                pos_hint: {"center_x":0.5, "center_y":0.74}
+                pos_hint: {"center_x": 0.5, "center_y": 0.74}
                 mode: "outlined"
                 size_hint_x: 0.4
                 required: True
                 MDTextFieldHintText:
                     text: "Task name"
+                    font_name: "CustomFont"  # Add this to apply font_name
 
             Label:
                 text: "Due Date (YYYY/MM/DD):"
                 font_name: "CustomFont"
-                font_size: "18sp"
-                size_hint: None, None
-                size: self.texture_size
-                pos_hint: {"center_x":0.5, "center_y":0.68}
+                font_size: "20sp"
+                adaptive_size: True
+                pos_hint: {"center_x": 0.5, "center_y": 0.68}
+                padding: "4dp", "4dp"
 
             MDTextField:
                 id: due_date
+                font_name: "CustomFont"
                 mode: "outlined"
                 adaptive_size: True
-                pos_hint: {"center_x":0.5, "center_y":0.62}
+                pos_hint: {"center_x": 0.5, "center_y": 0.62}
                 size_hint_x: 0.4
                 required: True
                 validator: "date"
                 date_format: "yyyy/mm/dd"
                 MDTextFieldHintText:
                     text: "YYYY/MM/DD"
+                    font_name: "CustomFont"  # Add this to apply font_name
 
             Label:
                 text: "Priority:"
                 font_name: "CustomFont"
-                font_size: "18sp"
-                size_hint: None, None
-                size: self.texture_size
-                pos_hint: {"center_x":0.5, "center_y":0.56}
+                font_size: "20sp"
+                adaptive_size: True
+                pos_hint: {"center_x": 0.5, "center_y": 0.56}
+                padding: "4dp", "4dp"
 
             MDTextField:
                 id: priority
+                font_name: "CustomFont"
                 mode: "outlined"
                 adaptive_size: True
-                pos_hint: {"center_x":0.5, "center_y":0.5}
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
                 size_hint_x: 0.4
                 required: True
                 MDTextFieldHintText:
                     text: "Priority"
+                    font_name: "CustomFont"  # Add this to apply font_name
 
             Label:
                 text: "Description:"
                 font_name: "CustomFont"
-                font_size: "18sp"
-                size_hint: None, None
-                size: self.texture_size
-                pos_hint: {"center_x":0.5, "center_y":0.44}
+                font_size: "20sp"
+                adaptive_size: True
+                pos_hint: {"center_x": 0.5, "center_y": 0.44}
+                padding: "4dp", "4dp"
 
             MDTextField:
                 id: description
+                font_name: "CustomFont"
                 mode: "outlined"
                 adaptive_size: True
-                pos_hint: {"center_x":0.5, "center_y":0.38}
+                pos_hint: {"center_x": 0.5, "center_y": 0.38}
                 size_hint_x: 0.4
                 required: True
                 MDTextFieldHintText:
                     text: "Description"
+                    font_name: "CustomFont"  # Add this to apply font_name
 
-            MDButton:
-                style: "tonal"
-                adaptive_size: True
-                pos_hint: {"center_x":0.5, "center_y":0.3}
-                on_press: app.save_task()
+            Button:
                 text: "Save Task"
                 font_size: "20sp"
-
+                font_name: "CustomFont"
+                size_hint: None, None
+                size: 200, 48
+                pos_hint: {"center_x": 0.5, "center_y": 0.3}
+                on_press: app.save_task()
 
 
 <CalendarScreen>:
@@ -183,14 +232,12 @@
                 font_size: "24sp"
                 size_hint: None, None
                 size: self.texture_size
-                pos_hint: {"center_x": 0.5, "center_y": 0.93}
+                pos_hint: {"center_x": 0.5, "center_y": 0.96}
                 color: 0, 0, 0, 1
 
-            Label:
+            MDLabel:
                 id: task_list
-                text: "HELLO WORLD"
-                font_name: "CustomFont"
-                font_size: "18sp"
-                size_hint: None, None
-                size: self.texture_size
+                adaptive_size: True
                 pos_hint: {"center_x":0.5, "center_y":0.8}
+                text: "HELLO WORLD"
+                padding: "4dp", "4dp"
