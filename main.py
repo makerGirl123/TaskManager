@@ -15,7 +15,13 @@ from kivy.uix.popup import Popup
 from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
-from kivy.core.text import LabelBase, DEFAULT_FONT
+
+from kivy.core.text import LabelBase
+from kivy.lang import Builder
+
+# Register your custom font
+LabelBase.register(name='CustomFont', fn_regular='assets\InknutAntiqua-Regular.ttf')
+
 
 #import functions from other python file
 from tasks_functions import TaskFunctions
@@ -23,9 +29,6 @@ task_manager = TaskFunctions()  # Create an instance
 
 #example Android screen size
 Window.size = (750, 750)
-
-#Set custom font
-LabelBase.register(name='CustomFont', fn_regular='assets/InknutAntiqua-Regular.ttf')
 
 #class for each screen and its canvas
 class HomeScreen(Screen):
@@ -45,6 +48,7 @@ class CalendarScreen(Screen):
 
 class TasksApp(MDApp):
     def build(self):
+
         self.theme_cls.primary_palette = "Silver"
         self.theme_cls.theme_style = "Light"
 
