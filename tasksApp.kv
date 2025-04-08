@@ -1,0 +1,214 @@
+#:kivy 2.3
+
+
+<HomeScreen>:
+    id: home
+    HomeScreenCanvas:
+        #Sets background to White
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        FloatLayout:
+            Label:
+                text: "Task Manager"
+                font_name: "CustomFont"
+                font_size: "32sp"
+                size_hint: None, None
+                size: self.texture_size
+                pos_hint: {"center_x": 0.5, "center_y": 0.8}
+                color: 0.1843137254901961, 0.2823529411764706, 0.34509803921568627, 1
+
+
+            MDButton:
+                style: "tonal"
+                adaptive_size: True
+                pos_hint: {"center_x":0.5, "center_y":0.6}
+                on_press: app.root.current = 'tasks'
+                MDButtonText:
+                    text: "Add Task"
+                    font_size: "20sp"
+
+
+            MDButton:
+                style: "tonal"
+                adaptive_size: True
+                pos_hint: {"center_x":0.5, "center_y":0.53}
+                on_press: app.go_calendar()
+                MDButtonText:
+                    text: "Monthly View"
+                    font_size: "20sp"
+            MDButton:
+                style: "tonal"
+                adaptive_size: True
+                pos_hint: {"center_x":0.5, "center_y":0.46}
+                #on_press: app.save()
+                MDButtonText:
+                    text: "Save Tasks"
+                    font_size: "20sp"
+
+
+
+<AddTasksScreen>:
+    id: tasks
+    AddTasksScreenCanvas:
+        #Sets background to White
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        FloatLayout:
+            MDTopAppBar:
+                type: "small"
+                size_hint_x: 1
+                pos_hint: {"center_x": .5, "center_y": 0.96}
+
+                MDTopAppBarLeadingButtonContainer:
+                    MDActionTopAppBarButton:
+                        icon: "home"
+                        on_press: app.go_home()
+
+                MDTopAppBarTitle:
+                    text: "Add a Task"
+                    pos_hint: {"center_x": .5}
+
+            ###########
+            #Task Name#
+            ###########
+
+            MDLabel:
+                adaptive_size: True
+                pos_hint: {"center_x":0.5, "center_y":0.8}
+                text: "Task Name:"
+                padding: "4dp", "4dp"
+                #font_style: "Headline"
+
+            MDTextField:
+                id: task_name
+                adaptive_size: True
+                pos_hint: {"center_x":0.5, "center_y":0.74}
+                mode: "outlined"
+                size_hint_x: 0.4
+                required: True
+                MDTextFieldHintText:
+                    text: "Task name"
+
+            ##########
+            #Due Date#
+            ##########
+
+            MDLabel:
+                adaptive_size: True
+                pos_hint: {"center_x":0.5, "center_y":0.68}
+                text: "Due Date (YYYY/MM/DD):"
+                padding: "4dp", "4dp"
+                #font_style: "Headline"
+
+            MDTextField:
+                id: due_date
+                mode: "outlined"
+                adaptive_size: True
+                pos_hint: {"center_x":0.5, "center_y":0.62}
+                size_hint_x: 0.4
+                required: True
+                validator: "date"
+                date_format: "yyyy/mm/dd"
+                MDTextFieldHintText:
+                    text: "YYYY/MM/DD"
+
+            ##########
+            #Priority#
+            ##########
+
+            MDLabel:
+                adaptive_size: True
+                pos_hint: {"center_x":0.5, "center_y":0.56}
+                text: "Priority:"
+                padding: "4dp", "4dp"
+                #font_style: "Headline"
+
+            MDTextField:
+                id: priority
+                mode: "outlined"
+                adaptive_size: True
+                pos_hint: {"center_x":0.5, "center_y":0.5}
+                size_hint_x: 0.4
+                required: True
+                MDTextFieldHintText:
+                    text: "Priority"
+
+            #############
+            #Description#
+            #############
+
+            MDLabel:
+                adaptive_size: True
+                pos_hint: {"center_x":0.5, "center_y":0.44}
+                text: "Description:"
+                padding: "4dp", "4dp"
+                #font_style: "Headline"
+
+            MDTextField:
+                id: description
+                mode: "outlined"
+                adaptive_size: True
+                pos_hint: {"center_x":0.5, "center_y":0.38}
+                size_hint_x: 0.4
+                required: True
+                MDTextFieldHintText:
+                    text: "Description"
+
+            #############
+            #Save Button#
+            #############
+
+            MDButton:
+                style: "tonal"
+                adaptive_size: True
+                pos_hint: {"center_x":0.5, "center_y":0.3}
+                on_press: app.save_task()
+                MDButtonText:
+                    text: "Save Task"
+                    font_size: "20sp"
+
+
+
+
+
+
+<CalendarScreen>:
+    id: calendar
+    CalendarScreenCanvas:
+        #Sets background to White
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        FloatLayout:
+            MDTopAppBar:
+                type: "small"
+                size_hint_x: 1
+                pos_hint: {"center_x": .5, "center_y": 0.96}
+
+                MDTopAppBarLeadingButtonContainer:
+                    MDActionTopAppBarButton:
+                        icon: "home"
+                        on_press: app.go_home()
+
+                MDTopAppBarTitle:
+                    text: "My Calendar"
+                    pos_hint: {"center_x": .5}
+            MDLabel:
+                id: task_list
+                adaptive_size: True
+                pos_hint: {"center_x":0.5, "center_y":0.8}
+                text: "HELLO WORLD"
+                padding: "4dp", "4dp"
+
