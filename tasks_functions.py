@@ -33,20 +33,24 @@ class TaskFunctions():
     Once fully implemented this funciton will be able to sort the tasks by low high or medium priority and display them in a list and then on 
     a TKINTER calendar GUI'''
 
-
     def view_tasks(self):
         # Check if there are no tasks
         if not self.tasks:
             print("No tasks available.")
-            return [] # Return empty list if no tasks exist
+            return []  # Return empty list if no tasks exist
         else:
-            tasks_list = ""
-            # Loop through the tasks and print the details of each
+            # Create a list of task dictionaries instead of a formatted string
+            tasks_list = []
             for name, info in self.tasks.items():
-                tasks_list += (f"- {name}: Due {info['due_date']}, {info['description']}\n")
+                task = {
+                    'task_name': name,
+                    'due_date': info['due_date'],
+                    'priority': info['priority'],
+                    'description': info['description']
+                }
+                tasks_list.append(task)
 
             return tasks_list
-
 
     def load_tasks_from_file(self):
         """
@@ -63,23 +67,3 @@ class TaskFunctions():
             print(f"Error loading tasks: {e}")
 
 
-if __name__ == "__main__":
-    # loop to ask user for input everytime
-    while True:
-        # Display options
-        '''The three main options that will be implemented in out GUI function that will be the end product are
-        Add task, View task and exit. '''
-        print("\n1. Add Task\n2. View Tasks\n3. Exit")
-
-        # Get user's choice
-        choice = input("Choose an option: ")
-
-        if choice == "1":
-            add_task()
-        elif choice == "2":
-            view_tasks()
-        elif choice == "3":
-            print("Have a good day!")
-            break
-        else:
-            print("Please enter 1, 2, or 3")
