@@ -1,0 +1,79 @@
+<HomeScreen>:
+    id: home
+    HomeScreenCanvas:
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        FloatLayout:
+            Label:
+                text: "Task Manager"
+                font_name: "CustomFont"
+                font_size: "32sp"
+                size_hint: None, None
+                size: self.texture_size
+                pos_hint: {"center_x": 0.5, "center_y": 0.8}
+                color: 0.184, 0.282, 0.345, 1
+
+            Button:
+                text: "Add Task"
+                font_size: "20sp"
+                font_name: "CustomFont"
+                size_hint: None, None
+                size: self.texture_size
+                padding: [30, 15]
+                pos_hint: {"center_x": 0.5, "center_y": 0.6}
+                background_normal: ""  # No default background image
+                background_color: 0, 0, 0, 0  # Transparent background
+                color: 0.184, 0.282, 0.345, 1  # Text color
+                on_press: app.root.current = 'tasks'
+                canvas.before:
+                    Color:
+                        rgba: 0.811, 0.988, 1, 1  # Set the button color
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [20]
+
+            Button:
+                text: "Monthly View"
+                font_size: "20sp"
+                font_name: "CustomFont"
+                size_hint: None, None
+                size: self.texture_size
+                padding: [30, 15]
+                pos_hint: {"center_x": 0.5, "center_y": 0.48}
+                background_normal: ""
+                background_color: 0, 0, 0, 0
+                color: 0.184, 0.282, 0.345, 1
+                on_press: app.update_calendar(); app.root.current = 'calendar'
+                canvas.before:
+                    Color:
+                        rgba: 0.811, 0.988, 1, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [20]
+
+            Button:
+                text: "Save Tasks"
+                font_size: "20sp"
+                font_name: "CustomFont"
+                size_hint: None, None
+                size: self.texture_size
+                padding: [30, 15]
+                pos_hint: {"center_x": 0.5, "center_y": 0.36}
+                background_normal: ""
+                background_color: 0, 0, 0, 0
+                color: 0.184, 0.282, 0.345, 1
+                on_press: app.save_task()
+                canvas.before:
+                    Color:
+                        rgba: 0.811, 0.988, 1, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [20]

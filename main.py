@@ -125,7 +125,7 @@ class TasksApp(MDApp):
 
         # Build mapping
         tasks = task_manager.view_tasks()
-        print("Tasks loaded:", tasks)  # Print loaded tasks to verify they are being fetched correctly
+        #print("Tasks loaded:", tasks)  # Print loaded tasks to verify they are being fetched correctly
 
         day_tasks = self.map_tasks_to_calendar(tasks, self.current_year, self.current_month)
         #print("Mapped tasks to days:", day_tasks)  # Print the mapped tasks to verify correct mapping
@@ -180,7 +180,7 @@ class TasksApp(MDApp):
 
     def map_tasks_to_calendar(self, tasks, year, month):
         result = {i: [] for i in range(1, calendar.monthrange(year, month)[1] + 1)}
-        print("Initial result structure:", result)  # Debug: Check initial structure of the result
+        #print("Initial result structure:", result)  # Debug: Check initial structure of the result
         for task in tasks:
             try:
                 # Parse the due date

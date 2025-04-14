@@ -1,0 +1,120 @@
+<AddTasksScreen>:
+    id: tasks
+    AddTasksScreenCanvas:
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        FloatLayout:
+            MDTopAppBar:
+                type: "small"
+                size_hint_x: 1
+                pos_hint: {"center_x": .5, "center_y": 0.96}
+                MDTopAppBarLeadingButtonContainer:
+                    MDActionTopAppBarButton:
+                        icon: "home"
+                        on_press: app.root.current = 'home'
+
+            Label:
+                text: "Add a Task"
+                font_name: "CustomFont"
+                font_size: "24sp"
+                size_hint: None, None
+                size: self.texture_size
+                pos_hint: {"center_x": 0.5, "center_y": 0.96}
+                color: 0, 0, 0, 1
+
+
+            Label:
+                text: "Task Name:"
+                font_name: "CustomFont"
+                font_size: "20sp"
+                adaptive_size: True
+                pos_hint: {"center_x": 0.5, "center_y": 0.8}
+                padding: "4dp", "4dp"
+
+            MDTextField:
+                id: task_name
+                font_name: "CustomFont"
+                adaptive_size: True
+                pos_hint: {"center_x": 0.5, "center_y": 0.74}
+                mode: "outlined"
+                size_hint_x: 0.4
+                required: True
+                MDTextFieldHintText:
+                    text: "Task name"
+                    font_name: "CustomFont"  # Add this to apply font_name
+
+            Label:
+                text: "Due Date (YYYY/MM/DD):"
+                font_name: "CustomFont"
+                font_size: "20sp"
+                adaptive_size: True
+                pos_hint: {"center_x": 0.5, "center_y": 0.68}
+                padding: "4dp", "4dp"
+
+            MDTextField:
+                id: due_date
+                font_name: "CustomFont"
+                mode: "outlined"
+                adaptive_size: True
+                pos_hint: {"center_x": 0.5, "center_y": 0.62}
+                size_hint_x: 0.4
+                required: True
+                validator: "date"
+                date_format: "yyyy/mm/dd"
+                MDTextFieldHintText:
+                    text: "YYYY/MM/DD"
+                    font_name: "CustomFont"  # Add this to apply font_name
+
+            Label:
+                text: "Priority:"
+                font_name: "CustomFont"
+                font_size: "20sp"
+                adaptive_size: True
+                pos_hint: {"center_x": 0.5, "center_y": 0.56}
+                padding: "4dp", "4dp"
+
+            MDTextField:
+                id: priority
+                font_name: "CustomFont"
+                mode: "outlined"
+                adaptive_size: True
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                size_hint_x: 0.4
+                required: True
+                MDTextFieldHintText:
+                    text: "Priority"
+                    font_name: "CustomFont"  # Add this to apply font_name
+
+            Label:
+                text: "Description:"
+                font_name: "CustomFont"
+                font_size: "20sp"
+                adaptive_size: True
+                pos_hint: {"center_x": 0.5, "center_y": 0.44}
+                padding: "4dp", "4dp"
+
+            MDTextField:
+                id: description
+                font_name: "CustomFont"
+                mode: "outlined"
+                adaptive_size: True
+                pos_hint: {"center_x": 0.5, "center_y": 0.38}
+                size_hint_x: 0.4
+                required: True
+                MDTextFieldHintText:
+                    text: "Description"
+                    font_name: "CustomFont"  # Add this to apply font_name
+
+            Button:
+                text: "Save Task"
+                font_size: "20sp"
+                font_name: "CustomFont"
+                size_hint: None, None
+                size: 200, 48
+                pos_hint: {"center_x": 0.5, "center_y": 0.3}
+                on_press: app.save_task()

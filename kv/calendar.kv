@@ -1,0 +1,75 @@
+<CalendarScreen>:
+    FloatLayout:
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1  # White background
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        # App bar
+        MDTopAppBar:
+            id: appbar
+            type: "small"
+            size_hint_x: 1
+            size_hint_y: None
+            height: "56dp"
+            pos_hint: {"top": 1}
+            elevation: 4
+            MDTopAppBarLeadingButtonContainer:
+                MDActionTopAppBarButton:
+                    icon: "home"
+                    on_press: app.go_home()
+
+        # Label centered over the app bar
+        Label:
+            text: "My Calendar"
+            font_name: "CustomFont"
+            font_size: "20sp"
+            size_hint: None, None
+            size: self.texture_size
+            pos_hint: {"center_x": 0.5, "top": 1}
+            color: 0, 0, 0, 1  # Black text for the title
+
+        # Main container for content below the app bar
+        BoxLayout:
+            orientation: "vertical"
+            padding: [10, 20, 10, 10]  # Added padding top to create buffer
+            spacing: 10
+            size_hint_y: 0.9
+            pos_hint: {"top": 0.92}  # Adjusted pos_hint to lower content
+
+            BoxLayout:
+                size_hint_y: None
+                height: "40dp"
+                spacing: 10
+                Button:
+                    text: "<"
+                    on_press: app.change_month(-1)
+                    background_color: 0.572549, 0.870588, 0.882352, 1
+                Label:
+                    id: month_label
+                    text: "April 2025"
+                    font_name: "CustomFont"
+                    font_size: "20sp"
+                    halign: "center"
+                    color: 0.184, 0.282, 0.345, 1  # Set text color for the month label
+                Button:
+                    text: ">"
+                    on_press: app.change_month(1)
+                    background_color: 0.572549, 0.870588, 0.882352, 1
+
+            GridLayout:
+                id: calendar_grid
+                cols: 7
+                spacing: 5
+                size_hint_y: 1
+
+
+                # Example for date labels and tasks - add these dynamically in your app
+                Label:
+                    text: "1"
+                    color: 0.184, 0.282, 0.345, 1  # Date label color
+                # You can add more labels dynamically for each day of the month
+                # and set their color similarly, using color: 0.184, 0.282, 0.345, 1
+
