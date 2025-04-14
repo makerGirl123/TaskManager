@@ -47,7 +47,7 @@ class CalendarScreen(Screen):
 
         for day in range(1, last_day + 1):
             layout = BoxLayout(orientation='vertical', padding=4, spacing=4)
-            layout.add_widget(Label(text=str(day), font_name="CustomFont"))
+            layout.add_widget(Label(text=str(day), font_name="CustomFont", color=(0.184, 0.282, 0.345, 1)))
 
             if day in day_tasks:
                 for task in day_tasks[day]:

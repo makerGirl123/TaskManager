@@ -12,6 +12,7 @@ from kivy.lang import Builder
 Builder.load_file("kv/home.kv")
 Builder.load_file("kv/add_tasks.kv")
 Builder.load_file("kv/calendar.kv")
+
 # App Settings
 Window.size = (750, 750)
 LabelBase.register(name='CustomFont', fn_regular='assets/InknutAntiqua-Regular.ttf')
