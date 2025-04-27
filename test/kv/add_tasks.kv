@@ -118,7 +118,7 @@
                 readonly: True
                 size_hint_x: 0.1
                 pos_hint: {"center_x": 0.78, "center_y": 0.52}
-                on_focus: if self.focus: app.open_ampm_menu("start")
+                on_touch_down: app.open_ampm_menu("start")
 
             MDTextField:
                 id: end_ampm
@@ -129,15 +129,7 @@
                 readonly: True
                 size_hint_x: 0.1
                 pos_hint: {"center_x": 0.78, "center_y": 0.40}
-                on_focus: if self.focus: app.open_ampm_menu("end")
-
-            Label:
-                id: time_display
-                text: ""
-                size_hint_y: None
-                height: "30dp"
-                font_name: "CustomFont"
-                color: 0, 0, 0, 1
+                on_touch_down: app.open_ampm_menu("end")
 
             Label:
                 text: "Priority:"
@@ -187,6 +179,7 @@
                 size: 200, 48
                 pos_hint: {"center_x": 0.5, "center_y": 0.05}
                 on_press: app.save_task()
+
             Image:
                 source: 'assets/fox_2.png'
                 size_hint: None, None

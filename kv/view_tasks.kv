@@ -1,0 +1,47 @@
+<ViewTasksScreen>:
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1  # Set background to white
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    FloatLayout:
+        ScrollView:
+            size_hint: 1, 0.6  # Adjust the height as needed
+            pos_hint: {"top": 0.9}
+            do_scroll_x: False
+
+            BoxLayout:
+                id: task_list
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                padding: 10
+                spacing: 10
+
+        Button:
+            text: "Back"
+            font_size: "20sp"
+            font_name: "CustomFont"
+            size_hint: None, None
+            size: self.texture_size
+            padding: [30, 15]
+            pos_hint: {"center_x": 0.5, "center_y": 0.2}
+            background_normal: ""
+            background_color: 0, 0, 0, 0  # Transparent background
+            color: 0.184, 0.282, 0.345, 1
+            on_press: app.go_home()
+            canvas.before:
+                Color:
+                    rgba: 0.811, 0.988, 1, 1  # Soft blue background
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [20]
+
+        Image:
+            source: 'assets/fox_3.png'
+            size_hint: None, None
+            size: 300, 300
+            pos_hint: {"right": 1, "bottom": 0}

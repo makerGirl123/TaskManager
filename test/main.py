@@ -1,8 +1,3 @@
-#Modules to install:
-    # kivy
-    # kivymd2
-    # datetime
-
 from kivymd.app import MDApp
 from kivy.core.window import Window
 from kivy.core.text import LabelBase
@@ -13,7 +8,7 @@ from datetime import datetime
 
 from screens import HomeScreen, AddTasksScreen, CalendarScreen, ViewTasksScreen
 from tasks_functions import TaskFunctions
-from popups import show_popup
+from widgets.popups import show_popup
 from kivy.lang import Builder
 
 Builder.load_file("kv/home.kv")
@@ -152,18 +147,13 @@ class TasksApp(MDApp):
     def open_ampm_menu(self, which):
         def do_open(*_):
             if which == "start":
+                self.end_ampm_menu.dismiss()  # close other
+                self.start_ampm_menu.caller = self.sm.get_screen("tasks").ids.start_ampm
                 self.start_ampm_menu.open()
-                try:
-                    self.start_ampm_menu.open()
-                except Exception:
-                    pass
-                self.end_ampm_menu.dismiss()
             elif which == "end":
-                self.start_ampm_menu.dismiss()
-                try:
-                    self.end_ampm_menu.open()
-                except Exception:
-                    pass
+                self.start_ampm_menu.dismiss()  # close other
+                self.end_ampm_menu.caller = self.sm.get_screen("tasks").ids.end_ampm
+                self.end_ampm_menu.open()
 
         Clock.schedule_once(do_open, 0.05)
 

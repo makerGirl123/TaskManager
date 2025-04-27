@@ -7,9 +7,7 @@ class TaskFunctions():
 
     def __init__(self):
         """Initialize the tasks dictionary and load tasks from file."""
-        self.tasks = {}
-        self.base_path = os.path.dirname(os.path.abspath(__file__))
-        self.ics_path = os.path.join(self.base_path, "tasks.ics")
+        self.tasks = {}  # Instance-specific dictionary
 
 
     # add a new task
@@ -40,9 +38,9 @@ class TaskFunctions():
         cal = Calendar()
 
         # Load existing .ics data if the file exists
-        if os.path.exists(self.ics_path):
+        if os.path.exists("tasks.ics"):
             try:
-                with open(self.ics_path, "r") as f:
+                with open("tasks.ics", "r") as f:
                     cal = Calendar(f.read())
             except Exception as e:
                 print(f"Failed to load existing calendar: {e}")
@@ -67,11 +65,11 @@ class TaskFunctions():
 
     def view_tasks(self):
         tasks_list = []
-        if not os.path.exists(self.ics_path):
+        if not os.path.exists("tasks.ics"):
             return tasks_list
 
         try:
-            with open(self.ics_path, "r") as f:
+            with open("tasks.ics", "r") as f:
                 cal = Calendar(f.read())
             for event in cal.events:
                 desc_lines = event.description.split('\n', 1)
@@ -115,11 +113,11 @@ class TaskFunctions():
             return False
 
     def delete_task(self, task_name, due_date):
-        if not os.path.exists(self.ics_path):
+        if not os.path.exists("tasks.ics"):
             return False
 
         try:
-            with open(self.ics_path, "r") as f:
+            with open("tasks.ics", "r") as f:
                 cal = Calendar(f.read())
 
             to_delete = None
@@ -130,7 +128,7 @@ class TaskFunctions():
 
             if to_delete:
                 cal.events.remove(to_delete)
-                with open(self.ics_path, "w", newline="\n") as f:
+                with open("tasks.ics", "w", newline="\n") as f:
                     f.write(str(cal))
                 return True
             else:

@@ -5,11 +5,9 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from datetime import datetime
 import calendar
-from popups import show_task_popup
+from widgets.popups import show_task_popup
 from kivy.lang import Builder
 from kivymd.app import MDApp
-from kivy.uix.button import Button
-from kivy.graphics import Color, RoundedRectangle
 
 Builder.load_file("kv/home.kv")
 Builder.load_file("kv/add_tasks.kv")
@@ -83,30 +81,9 @@ class ViewTasksScreen(Screen):
         self.ids.task_list.clear_widgets()
         for task in tasks:
             box = BoxLayout(orientation='horizontal', size_hint_y=None, height=50, padding=5, spacing=10)
-            label = Label(text=f"{task['task_name']} ({task['due_date']})", halign="left", color=(0.184, 0.282, 0.345, 1))
-            #btn = Button(text="Complete", size_hint_x=0.3)
-            btn = Button(
-                text="Complete",
-                font_size="20sp",
-                font_name="CustomFont",
-                size_hint_x=0.3,
-                padding=[30, 15],
-                background_normal="",
-                background_color=(0, 0, 0, 0),
-                color=(0.184, 0.282, 0.345, 1),
-            )
-            btn.texture_update()
-            btn.size = btn.texture_size
-
-            with btn.canvas.before:
-                Color(rgba=(0.811, 0.988, 1, 1))
-                bg = RoundedRectangle(pos=btn.pos, size=btn.size, radius=[20])
-
-            btn.bind(pos=lambda inst, val: setattr(bg, 'pos', inst.pos),
-                     size=lambda inst, val: setattr(bg, 'size', inst.size))
-
-
-            #btn.bind(on_release=lambda btn, t=task: self.mark_complete(t))
+            label = Label(text=f"{task['task_name']} ({task['due_date']})", halign="left")
+            btn = Button(text="Complete", size_hint_x=0.3)
+            btn.bind(on_release=lambda btn, t=task: self.mark_complete(t))
             box.add_widget(label)
             box.add_widget(btn)
             self.ids.task_list.add_widget(box)
