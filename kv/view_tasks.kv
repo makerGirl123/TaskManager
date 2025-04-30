@@ -7,6 +7,22 @@
             size: self.size
 
     FloatLayout:
+        MDTopAppBar:
+            type: "small"
+            size_hint_x: 1
+            pos_hint: {"center_x": .5, "center_y": 0.96}
+            MDTopAppBarLeadingButtonContainer:
+                MDActionTopAppBarButton:
+                    icon: "home"
+                    on_press: app.root.current = 'home'
+        Label:
+            text: "My Tasks"
+            font_name: "CustomFont"
+            font_size: "24sp"
+            size_hint: None, None
+            size: self.texture_size
+            pos_hint: {"center_x": 0.5, "center_y": 0.96}
+            color: 0, 0, 0, 1
         ScrollView:
             size_hint: 1, 0.6  # Adjust the height as needed
             pos_hint: {"top": 0.9}

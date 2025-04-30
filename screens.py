@@ -82,31 +82,33 @@ class ViewTasksScreen(Screen):
     def display_tasks(self, tasks):
         self.ids.task_list.clear_widgets()
         for task in tasks:
+            self.ids.task_list.spacing = 50
             box = BoxLayout(orientation='horizontal', size_hint_y=None, height=50, padding=5, spacing=10)
             label = Label(text=f"{task['task_name']} ({task['due_date']})", halign="left", color=(0.184, 0.282, 0.345, 1))
-            #btn = Button(text="Complete", size_hint_x=0.3)
             btn = Button(
                 text="Complete",
-                font_size="20sp",
+                font_size="14sp",
                 font_name="CustomFont",
-                size_hint_x=0.3,
-                padding=[30, 15],
-                background_normal="",
-                background_color=(0, 0, 0, 0),
+                size_hint=(None, None),
+                padding=(20, 10),
+                background_normal="",  # This removes the default button background
+                background_down="",  # This ensures there's no background when pressed
                 color=(0.184, 0.282, 0.345, 1),
             )
-            btn.texture_update()
-            btn.size = btn.texture_size
+
+            btn.bind(texture_size=lambda instance, value: setattr(instance, 'size', value))
 
             with btn.canvas.before:
-                Color(rgba=(0.811, 0.988, 1, 1))
-                bg = RoundedRectangle(pos=btn.pos, size=btn.size, radius=[20])
+                #bg_color = Color(rgba=(0.811, 0.988, 1, 1))  # Soft blue
+                bg_rect = RoundedRectangle(pos=btn.pos, size=btn.size, radius=[20])
 
-            btn.bind(pos=lambda inst, val: setattr(bg, 'pos', inst.pos),
-                     size=lambda inst, val: setattr(bg, 'size', inst.size))
+            def update_bg(*args):
+                bg_rect.pos = btn.pos
+                bg_rect.size = btn.size
 
+            btn.bind(pos=update_bg, size=update_bg)
 
-            #btn.bind(on_release=lambda btn, t=task: self.mark_complete(t))
+            btn.bind(on_release=lambda btn, t=task: self.mark_complete(t))
             box.add_widget(label)
             box.add_widget(btn)
             self.ids.task_list.add_widget(box)
@@ -114,4 +116,8 @@ class ViewTasksScreen(Screen):
     def mark_complete(self, task):
         app = MDApp.get_running_app()
         app.delete_task(task['task_name'], task['due_date'])
+        self.display_tasks(app.task_manager.view_tasks())
+
+    def on_pre_enter(self):
+        app = MDApp.get_running_app()
         self.display_tasks(app.task_manager.view_tasks())
